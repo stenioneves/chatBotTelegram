@@ -8,6 +8,7 @@ const bot = new Telegraf(env.token)
 
 bot.start(ctx=>{
     const from = ctx.update.message.from
+    console.log(from)
       //iteração dos usuarios cadastrados 
       use= false 
     for(const id of env.user ){
@@ -23,4 +24,16 @@ bot.start(ctx=>{
         ctx.reply(`Sinto muito ${from.first_name}, mas eu só fala com o meu mestre!`)
     }
 })
+
+bot.on('text',async(ctx,next)=>{
+
+   await ctx.reply('Desculpe, não posso ajudar!')
+    next()
+})
+bot.on('text',async(ctx,next)=>{
+
+   await ctx.reply('Favor entrar em contato com o meu criador @stenioneves')
+    next()
+})
+
 bot.startPolling()
