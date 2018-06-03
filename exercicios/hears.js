@@ -14,7 +14,10 @@ bot.hears(/(\d{2}\/\d{2}\/\d{4})/,ctx=>{
     const data = moment(ctx.match[1],'DD/MM/YYYY')
     ctx.reply(`${ctx.match[1]} cai em ${data.format('dddd')}`)
 })
-
+bot.hears([/oi/i,/ola/i,/opa/i],ctx=>{
+    ctx.reply('O que você quer? Estou muito ocupdo analisando dados')
+    
+})
 
 bot.startPolling()
 
