@@ -33,4 +33,19 @@ sumScene.command('zerar', ctx=>{
     sum =0
     ctx.reply(`valor :${sum}`)
 })
-sumScene.command('sair')
+sumScene.command('sair',leave())
+sumScene.hears(/(\d+)/,ctx=>{
+    sum+=parseInt(ctx.match[1])
+    ctx.reply(`Valor: ${sum}`)
+})
+sumScene.on('message', ctx=>ctx.reply('Digite números, por favor'))
+
+const stage = new Stage([echoScene,sumScene])
+
+bot.use(session())
+bot.use(stage.middleware())
+bot.command('soma',enter('sum'))
+bot.command('echo',enter('echo'))
+bot.on('message',ctx=>ctx.reply('Entre com /echo ou /soma para iniciar...'))
+
+bot.startPolling()
